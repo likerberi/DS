@@ -25,7 +25,7 @@ def bar_chart(feature) :
 
 bar_chart('Pclass')
 bar_chart('Sex')
-#bar_chart('Age')
-#bar_chart('SibSp')
-#bar_chart('Parch')
+# bar_chart('Age')
+# bar_chart('SibSp')
+# bar_chart('Parch')
 bar_chart('Embarked')
