@@ -5,3 +5,7 @@ input
 # virtual env
 venv
 /venv
+
+#.idea
+.idea
+/.idea
