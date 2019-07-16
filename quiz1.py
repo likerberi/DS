@@ -134,14 +134,25 @@ k_fold = KFold(n_splits=10, shuffle=True, random_state=5)
 clf = RandomForestClassifier(n_estimators=13)
 scoring = 'accuracy'
 score = cross_val_score(clf, train_data, train_label, cv=k_fold, n_jobs=1, scoring=scoring)
-print(np.mean(score) * 100, 2)
+# print(np.mean(score) * 100)
+clf.fit(train_data, train_label)
+prediction = clf.predict(test_data)
 
-def train_and_test(model):
-    model.fit(train_data, train_label)
-    prediction = model.predict(test_data)
-    accuracy = round(model.score(train_data, train_label) * 100, 2)
-    print("Pred: ", accuracy, "%_by")
-    return prediction
+submission = pd.DataFrame({
+    "PassengerId": test["PassengerId"],
+    "Survived": prediction
+})
+
+submission.to_csv ('submission_result.csv', index=False)
+# LOCAL :: 81%
+# KAGGLE :: 75%
+
+# def train_and_test(model):
+#     model.fit(train_data, train_label)
+#     prediction = model.predict(test_data)
+#     accuracy = round(model.score(train_data, train_label) * 100, 2)
+#     print("Pred: ", accuracy, "%_by")
+#     return prediction
 
 # print(train_data.shape)
 # print(train_label.shape)
